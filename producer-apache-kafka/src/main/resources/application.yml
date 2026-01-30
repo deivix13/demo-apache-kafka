@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: "consumer-deivix"
+
+server:
+  port: 8083
