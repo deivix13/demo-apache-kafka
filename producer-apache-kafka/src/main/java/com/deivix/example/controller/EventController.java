@@ -2,6 +2,8 @@ package com.deivix.example.controller;
 
 import com.deivix.example.model.TransactionMessage;
 import com.deivix.example.services.KafkaProducerService;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -13,16 +15,16 @@ import java.util.UUID;
 
 @RestController
 @Slf4j
+@RequiredArgsConstructor
 public class EventController {
 
-    @Autowired
-    KafkaProducerService kafkaProducerService;
+    private final KafkaProducerService kafkaProducerService;
 
     @PostMapping("/event")
-    ResponseEntity<String> eventResponse(@RequestBody TransactionMessage transactionMessage) {
+    ResponseEntity<@NonNull String> eventResponse(@RequestBody TransactionMessage transactionMessage) {
 
         UUID uuid = UUID.randomUUID();
-        log.info("Transaction recieved with key: " + uuid);
+        log.info("Transaction received with key: " + uuid);
         kafkaProducerService.send("transaction-cool-topic", uuid, transactionMessage);
 
         return ResponseEntity.ok("Sent");
