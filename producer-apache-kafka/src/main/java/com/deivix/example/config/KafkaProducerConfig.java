@@ -32,6 +32,7 @@ public class KafkaProducerConfig {
     public ProducerFactory<@NonNull UUID, @NonNull TransactionMessage> producerFactory() {
 
         Map<String, Object> configProps = new HashMap<>();
+
         // Kafka broker address
         configProps.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, this.bootstrapServers);
 
