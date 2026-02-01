@@ -18,7 +18,7 @@ public class TransactionMessage {
         WITHDRAW, DEPOSIT
     }
     public enum Status {
-        SUBMITED, STARTED, PENDING, FINISHED, TERMINATED
+        SUBMITTED, STARTED, PENDING, FINISHED, TERMINATED
     }
 
 }
