@@ -1,12 +1,12 @@
 spring:
   application:
-    name: "consumer-deivix"
+    name: "producer-deivix"
 
   kafka:
     producer:
       bootstrap-servers: localhost:9092
       key-serializer: org.apache.kafka.common.serialization.UUIDSerializer
-      value-serializer: org.springframework.kafka.support.serializer.JacksonJsonSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
 
 server:
-  port: 8083
+  port: 8084
