@@ -15,6 +15,7 @@ Functional demo with Spring Boot and Apache Kafka
 - [x] Use KRaft instead of Zookeeper 
 - [x] Add UI
 - [ ] Add Retry + DLT
+- [ ] Add tests
 - [ ] Run the proejct via mvn commands
 ---
 
@@ -22,9 +23,9 @@ Functional demo with Spring Boot and Apache Kafka
 
 1. **Modular architecture** – Producer and consumer are separate, following single responsibility principle.
 
-2. **Dependency Injection** – Kafka beans and services are injected via Spring for clean, testable code.
+2. **Kafka UI** – A web interface to view and manage all Kafka topics, messages, and consumer groups.
 
-4. **Asynchronous Kafka producer with callbacks** – Logs success and errors efficiently without blocking.
+3. **Asynchronous Kafka producer with callbacks** – Logs success and errors efficiently without blocking.
 
 4. **Error handling for consumers** – ErrorHandlingDeserializer prevents malformed messages from crashing the service.
 
