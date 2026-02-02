@@ -16,7 +16,7 @@ Functional demo with Spring Boot and Apache Kafka
 - [x] Add UI
 - [ ] Add Retry + DLT
 - [ ] Add tests
-- [ ] Run the proejct via mvn commands
+- [ ] Run the project via mvn commands
 ---
 
 ## Notable features
