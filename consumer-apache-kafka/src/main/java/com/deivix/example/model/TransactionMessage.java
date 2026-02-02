@@ -15,13 +15,11 @@ public class TransactionMessage {
     @NonNull
     private Long transactionID;
 
-    @NotBlank(message = "Event cannot be blank")
     private Event event;
 
     @Positive
     private Double amount;
 
-    @NotBlank(message = "Status cannot be blank")
     private Status status;
 
     public enum Event {
