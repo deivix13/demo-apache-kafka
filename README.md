@@ -1,4 +1,4 @@
-# demo-apache-kafka
+# microservices-apache-kafka
 
 [![Java](https://img.shields.io/badge/java-17-blue)](https://www.oracle.com/java/)
 [![Apache Kafka](https://img.shields.io/badge/Apache%20Kafka%20Confluentic-7.4-orange)](https://kafka.apache.org/)
