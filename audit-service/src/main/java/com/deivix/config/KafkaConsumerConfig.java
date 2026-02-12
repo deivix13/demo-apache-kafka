@@ -1,6 +1,5 @@
 package com.deivix.config;
 
-import com.deivix.model.TransactionMessage;
 import lombok.NonNull;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.UUIDDeserializer;
@@ -30,7 +29,7 @@ public class KafkaConsumerConfig {
 
     // Defines how Kafka consumers are created.
     @Bean
-    public ConsumerFactory<@NonNull UUID, @NonNull TransactionMessage> consumerFactory() {
+    public ConsumerFactory<@NonNull UUID, Object> consumerFactory() {
         Map<String, Object> props = new HashMap<>();
 
         props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, this.bootstrapServers);
@@ -43,10 +42,12 @@ public class KafkaConsumerConfig {
 
         props.put(ErrorHandlingDeserializer.KEY_DESERIALIZER_CLASS, UUIDDeserializer.class);
         props.put(ErrorHandlingDeserializer.VALUE_DESERIALIZER_CLASS, JsonDeserializer.class);
-        props.put(JsonDeserializer.USE_TYPE_INFO_HEADERS, false);
-        props.put(JsonDeserializer.VALUE_DEFAULT_TYPE,
-                "com.deivix.model.TransactionMessage");
-
+        props.put(JsonDeserializer.USE_TYPE_INFO_HEADERS, true);
+        props.put(JsonDeserializer.TRUSTED_PACKAGES, "com.deivix.*");
+        props.put(JsonDeserializer.VALUE_DEFAULT_TYPE, Object.class.getName());
+        props.put(JsonDeserializer.TYPE_MAPPINGS,
+                "transaction_created:com.deivix.dto.TransactionCreatedEventDTO, " +
+                        "transaction_finished:com.deivix.dto.TransactionFinishedEventDTO");
         return new org.springframework.kafka.core.DefaultKafkaConsumerFactory<>(props);
     }
 
@@ -55,10 +56,10 @@ public class KafkaConsumerConfig {
      * Supports concurrent message consumption.
      */
     @Bean
-    public ConcurrentKafkaListenerContainerFactory<@NonNull UUID, @NonNull TransactionMessage>
+    public ConcurrentKafkaListenerContainerFactory<@NonNull UUID, Object>
     kafkaListenerContainerFactory() {
 
-        ConcurrentKafkaListenerContainerFactory<@NonNull UUID, @NonNull TransactionMessage> factory =
+        ConcurrentKafkaListenerContainerFactory<@NonNull UUID, Object> factory =
                 new ConcurrentKafkaListenerContainerFactory<>();
 
         // Use the consumer factory defined above

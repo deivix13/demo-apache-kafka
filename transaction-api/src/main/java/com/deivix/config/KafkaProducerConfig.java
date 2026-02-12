@@ -1,6 +1,7 @@
 package com.deivix.config;
 
-import com.deivix.model.TransactionMessage;
+import com.deivix.dto.TransactionCreatedEventDTO;
+import com.deivix.event.CustomKafkaEvent;
 import lombok.NonNull;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.springframework.beans.factory.annotation.Value;
@@ -29,7 +30,7 @@ public class KafkaProducerConfig {
 
     // Define how Kafka producers are created.
     @Bean
-    public ProducerFactory<@NonNull UUID, @NonNull TransactionMessage> producerFactory() {
+    public ProducerFactory<@NonNull UUID, Object> producerFactory() {
 
         Map<String, Object> configProps = new HashMap<>();
 
@@ -43,7 +44,7 @@ public class KafkaProducerConfig {
     }
 
     @Bean
-    public KafkaTemplate<@NonNull UUID, @NonNull TransactionMessage> kafkaTemplate() {
+    public KafkaTemplate<@NonNull UUID, Object> kafkaTemplate() {
         return new KafkaTemplate<>(producerFactory());
     }
 }

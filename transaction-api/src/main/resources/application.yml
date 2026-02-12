@@ -8,5 +8,10 @@ spring:
       key-serializer: org.apache.kafka.common.serialization.UUIDSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
 
+  jackson:
+    deserialization:
+      fail-on-unknown-properties: true
+      read-unknown-enum-values-as-null: true
+
 server:
   port: 8084

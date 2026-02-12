@@ -1,6 +1,6 @@
 package com.deivix.controller;
 
-import com.deivix.model.TransactionMessage;
+import com.deivix.dto.TransactionCreatedEventDTO;
 import com.deivix.producer.KafkaProducerService;
 import jakarta.validation.Valid;
 import lombok.NonNull;
@@ -23,11 +23,11 @@ public class EventController {
     private final KafkaProducerService kafkaProducerService;
 
     @PostMapping("/event")
-    ResponseEntity<@NonNull String> eventResponse(@Valid @RequestBody TransactionMessage transactionMessage) {
+    ResponseEntity<@NonNull String> eventResponse(@Valid @RequestBody TransactionCreatedEventDTO transactionCreated) {
 
         UUID uuid = UUID.randomUUID();
         log.info("Transaction received with key: " + uuid);
-        kafkaProducerService.send("transaction-cool-topic", uuid, transactionMessage);
+        kafkaProducerService.send("transaction-created", uuid, transactionCreated);
 
         return ResponseEntity.ok("Sent");
     }

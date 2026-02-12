@@ -17,7 +17,7 @@ public class KafkaConfig {
     public NewTopic[] transactionNumber() {
         return new NewTopic[]{
 
-                TopicBuilder.name("transaction-started")
+                TopicBuilder.name("transaction-created")
                         .partitions(1)
                         .replicas(1)
                         .build(),
@@ -32,7 +32,7 @@ public class KafkaConfig {
                         .replicas(1)
                         .build(),
 
-                TopicBuilder.name("transaction-termianted")
+                TopicBuilder.name("transaction-terminated")
                         .partitions(2)
                         .replicas(1)
                         .build(),

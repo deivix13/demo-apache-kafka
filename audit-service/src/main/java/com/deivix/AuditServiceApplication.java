@@ -9,10 +9,3 @@ public class AuditServiceApplication {
         SpringApplication.run(AuditServiceApplication.class, args);
     }
 }
-@SpringBootApplication
-public class TransactionApiMain {
-
-    public static void main(String[] args) {
-        SpringApplication.run(TransactionApiMain.class, args);
-    }
-}
